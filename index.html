@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unique Usernames</title>
+    <script>
+        function getUniqueUsernames() {
+            var mainList = document.getElementById("mainList").value;
+            var mutualList = document.getElementById("mutualList").value;
+
+            // Split the main list and mutual list into arrays
+            var mainUsernames = mainList.split("\n").map(username => username.trim());
+            var mutualUsernames = mutualList.split("\n").map(username => username.trim());
+
+            // Create a Set to store unique usernames
+            var uniqueUsernames = new Set();
+
+            // Add usernames from the main list to the set
+            mainUsernames.forEach(username => {
+                uniqueUsernames.add(username);
+            });
+
+            // Remove usernames from the mutual list from the set
+            mutualUsernames.forEach(username => {
+                uniqueUsernames.delete(username);
+            });
+
+            // Convert the Set back to an array
+            var finalList = Array.from(uniqueUsernames);
+
+            // Update the front-end with the final list of unique usernames
+            var output = document.getElementById("output");
+            output.innerHTML = "Final List of Unique Usernames: " + finalList.join(", ");
+        }
+    </script>
+</head>
+<body>
+    <h1>Unique Usernames</h1>
+    <label for="mainList">Enter usernames for the main list (one username per line):</label>
+    <br>
+    <textarea id="mainList" rows="4" cols="50" readonly>
+      @shagormukthakim
+      @miraz._.x
+      @mrannzz
+      @syed_foyez18
+      @bangladeshclub
+      @__rahul_s_islam__
+<!-- Add more default usernames here -->
+    </textarea>
+    <br>
+    <label for="mutualList">Enter usernames for the mutual list (one username per line):</label>
+    <br>
+    <textarea id="mutualList" rows="4" cols="50"></textarea>
+    <br>
+    <button onclick="getUniqueUsernames()">Get Unique Usernames</button>
+    <br>
+    <br>
+    <div id="output"></div>
+</body>
+</html>
